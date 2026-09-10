@@ -88,26 +88,27 @@ input:focus, select:focus, textarea:focus{border-color:var(--brass-deep);}
 .mono{font-family:var(--font-mono);}
 
 /* Login */
-.login-shell{min-height:100vh; display:flex; background:var(--ink); position:relative; overflow:hidden;}
-.login-shell::before{content:""; position:absolute; inset:0; background-image:
-  repeating-linear-gradient(0deg, rgba(255,255,255,0.035) 0px, rgba(255,255,255,0.035) 1px, transparent 1px, transparent 64px),
-  repeating-linear-gradient(90deg, rgba(255,255,255,0.035) 0px, rgba(255,255,255,0.035) 1px, transparent 1px, transparent 64px);
-  pointer-events:none;}
-.login-brand{flex:1.1; display:flex; flex-direction:column; justify-content:center; padding:64px 72px; position:relative; z-index:1; color:var(--paper);}
-.login-brand .crest{width:64px; height:64px; margin-bottom:28px;}
-.login-brand .eyebrow{color:var(--brass); font-family:var(--font-mono); font-size:13px; letter-spacing:0.03em; margin-bottom:14px;}
-.login-brand h1{font-size:40px; line-height:1.15; color:var(--white); max-width:520px;}
-.login-brand .sub{margin-top:18px; max-width:460px; color:#B9C2D6; font-size:15px; line-height:1.6;}
-.login-brand .divider-line{width:56px; height:3px; background:var(--brass); margin:26px 0 0;}
-.login-form-wrap{flex:0 0 460px; background:var(--paper); display:flex; align-items:center; justify-content:center; padding:40px; position:relative; z-index:1; box-shadow:var(--shadow-panel);}
-.login-card{width:100%; max-width:340px;}
-.login-card h2{font-size:22px; margin-bottom:6px;}
-.login-card .lede{color:var(--ink-soft); font-size:13.5px; margin-bottom:28px;}
+.login-shell{
+  min-height:100vh; display:flex; align-items:center; justify-content:center;
+  background:var(--paper-2); padding:20px;
+}
+.login-card{
+  width:100%; max-width:400px;
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow-panel);
+  padding:36px 34px;
+}
+.login-card-head{text-align:center; margin-bottom:26px; padding-bottom:22px; border-bottom:1px solid var(--line);}
+.login-card-head h1{font-size:18px; color:var(--brass-deep); line-height:1.3;}
+.login-card-head p{color:var(--ink-soft); font-size:12.5px; margin-top:5px;}
+.login-card h2{font-size:19px; margin-bottom:6px;}
+.login-card .lede{color:var(--ink-soft); font-size:13.5px; margin-bottom:22px;}
 .login-card .btn{width:100%; margin-top:6px; padding:12px;}
 .login-error{background:var(--red-bg); color:var(--red); font-size:13px; padding:10px 12px; border-radius:var(--radius); margin-bottom:16px; display:none;}
 .login-error.show{display:block;}
-.login-footer-note{margin-top:26px; font-size:12px; color:var(--grey); line-height:1.6;}
-@media (max-width:860px){ .login-shell{flex-direction:column;} .login-brand{padding:40px 28px;} .login-brand h1{font-size:30px;} .login-form-wrap{flex:1; box-shadow:none;} }
+.login-footer-note{margin-top:22px; font-size:12px; color:var(--grey); line-height:1.6; text-align:center;}
 
 /* App shell */
 .app-shell{display:none; min-height:100vh; flex-direction:column;}
@@ -269,28 +270,21 @@ table.datasheet tbody tr:hover{background:var(--line-soft);}
 
 <!-- ============ LOGIN SCREEN ============ -->
 <div class="login-shell" id="loginShell">
-  <div class="login-brand">
-    <svg class="crest" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M32 4L54 14V30C54 44 44 54 32 60C20 54 10 44 10 30V14L32 4Z" stroke="#A9823C" stroke-width="2"/>
-      <path d="M32 16V48M22 24H42M20 32H44" stroke="#A9823C" stroke-width="2" stroke-linecap="round"/>
-    </svg>
-    <div class="eyebrow">CPO OFFICE — LEGAL BRANCH</div>
-    <h1>High Court Case Register</h1>
-    <p class="sub">A single record of every writ petition, criminal miscellaneous and bail matter pending before the Lahore High Court, with hearing history maintained against each file.</p>
-    <div class="divider-line"></div>
-  </div>
-  <div class="login-form-wrap">
-    <div class="login-card">
-      <h2>Sign in</h2>
-      <p class="lede">Enter the login issued by your branch administrator.</p>
-      <div class="login-error" id="loginError"></div>
-      <form id="loginForm">
-        <div class="field"><label for="username">Username</label><input type="text" id="username" autocomplete="username" required></div>
-        <div class="field"><label for="password">Password</label><input type="password" id="password" autocomplete="current-password" required></div>
-        <button type="submit" class="btn btn-brass" id="loginBtn">Sign in to register</button>
-      </form>
-      <p class="login-footer-note">Access is issued by the Legal Branch administrator through the connected Google Sheet. Contact your admin if you do not have a login.</p>
+  <div class="login-card">
+    <div class="login-card-head">
+      <h1>High Court Cases Management System</h1>
+      <p>Legal Branch, CPO Office</p>
     </div>
+
+    <h2>Sign in</h2>
+    <p class="lede">Enter the login issued by your branch administrator.</p>
+    <div class="login-error" id="loginError"></div>
+    <form id="loginForm">
+      <div class="field"><label for="username">Username</label><input type="text" id="username" autocomplete="username" required></div>
+      <div class="field"><label for="password">Password</label><input type="password" id="password" autocomplete="current-password" required></div>
+      <button type="submit" class="btn btn-brass" id="loginBtn">Sign in</button>
+    </form>
+    <p class="login-footer-note">Access is issued by the Legal Branch administrator through the connected Google Sheet. Contact your admin if you do not have a login.</p>
   </div>
 </div>
 
@@ -512,7 +506,7 @@ table.datasheet tbody tr:hover{background:var(--line-soft);}
 const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbz5Ol4vz5S4uLpnxx-DaKKJGb_sKHLt2RlKXkG1CprQNVU5-OSHklbIjSqWeQ4jVWsj/exec";
 
 // TEMPORARY — set back to false once you're done testing to re-enable the login screen.
-const SKIP_LOGIN_FOR_TESTING = true;
+const SKIP_LOGIN_FOR_TESTING = false;
 
 const POLICE_STATIONS = [
   "Civil Line","Rail Bazar","Kotwali","Jhang Bazar","Gulberg","Ghulam Muhammad Abad",
@@ -574,17 +568,44 @@ function showApp() {
   document.getElementById('sidebarUserName').textContent = currentUser.fullName;
   initAppOnce();
   loadRegister();
+  startInactivityTimer();
 }
 function showLogin() {
   document.getElementById('appShell').classList.remove('show');
   document.getElementById('loginShell').style.display = 'flex';
+  stopInactivityTimer();
 }
 
-document.getElementById('logoutBtn').addEventListener('click', () => {
+function doLogout() {
   sessionStorage.removeItem('lct_user');
   currentUser = null;
   showLogin();
-});
+}
+
+document.getElementById('logoutBtn').addEventListener('click', doLogout);
+
+/* ---- Auto-logout after 5 minutes of inactivity (silent, no message) ---- */
+const INACTIVITY_LIMIT_MS = 5 * 60 * 1000;
+let inactivityTimer = null;
+
+function resetInactivityTimer() {
+  clearTimeout(inactivityTimer);
+  inactivityTimer = setTimeout(doLogout, INACTIVITY_LIMIT_MS);
+}
+
+function startInactivityTimer() {
+  ['mousemove', 'mousedown', 'keydown', 'scroll', 'touchstart', 'click'].forEach(evt => {
+    document.addEventListener(evt, resetInactivityTimer);
+  });
+  resetInactivityTimer();
+}
+
+function stopInactivityTimer() {
+  clearTimeout(inactivityTimer);
+  ['mousemove', 'mousedown', 'keydown', 'scroll', 'touchstart', 'click'].forEach(evt => {
+    document.removeEventListener(evt, resetInactivityTimer);
+  });
+}
 
 document.getElementById('loginForm').addEventListener('submit', async (e) => {
   e.preventDefault();
